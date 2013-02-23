@@ -1,0 +1,23 @@
+﻿@using NGravatar.Html
+@using NGM.Forum.Models
+@using NGM.Forum.Extensions
+@using Orchard.Security
+@using Orchard.Core.Common.Models
+@using Orchard.ContentManagement
+
+@{
+    IUser user = (IUser)Model.ContentPart.Owner;
+    var gravatarUrl = Url.Gravatar(string.IsNullOrWhiteSpace(user.Email) ? "dummy@foobar.com" : user.Email, 50);
+
+    PostPart post = ((CommonPart) Model.ContentPart).As<PostPart>();
+}
+
+<span class="author">
+    @if (!string.IsNullOrWhiteSpace(gravatarUrl)) {
+        <img src="@gravatarUrl" alt="" title="@user.UserName" />
+    }
+    @T("By {0}", user.UserName)@T(",")
+</span>
+<span class="published">@Display.PublishedState(createdDateTimeUtc: Model.ContentPart.CreatedUtc, publisheddateTimeUtc: Model.ContentPart.PublishedUtc)</span>
+@T("in")
+<span class="publishedin"><a href="@Url.ThreadView(post.ThreadPart)">@post.ThreadPart.Title</a></span>

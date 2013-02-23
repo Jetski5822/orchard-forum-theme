@@ -1,0 +1,8 @@
+﻿@{
+    string returnUrl = Request.QueryString["ReturnUrl"] ?? "/";
+}
+
+<fieldset class="save-button">
+    <button class="primaryAction" type="submit" name="submit.Save" value="submit.Save">@T("Save")</button>
+    <a href="@returnUrl" class="button cancel">@T("Cancel")</a>
+</fieldset>
