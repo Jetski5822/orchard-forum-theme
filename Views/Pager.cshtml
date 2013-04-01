@@ -36,6 +36,8 @@
     if (!pageSizes.Contains(defaultPageSize)) {
         pageSizes.Add(defaultPageSize);
     }
+
+    Script.Require("jQuery");
 }
 
 @if (Model.TotalItemCount > 1) {

@@ -96,9 +96,12 @@
         }
         @* the model content for the page is in the Content zone @ the default position (nothing, zero, zilch) *@
         @if (Model.Content != null) {
-        <div id="content" class="group">
-            @Zone(Model.Content)
-        </div>
+            <div id="content" class="group">
+                @Zone(Model.Content)
+            </div>
+            <div id="secondary-content" class="group">
+                @Zone(Model.SecondaryContent)
+            </div>
         }
         @if (Model.AfterContent != null) {
         <div id="after-content">

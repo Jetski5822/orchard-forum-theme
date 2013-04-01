@@ -701,7 +701,7 @@ nav ul.breadcrumb
 /* Pager
 ***************************************************************/
 
-.pager-footer { }
+.pager-footer { clear: left; }
 .page-size-options {
     float: left;
     padding-right: 40px;
@@ -851,7 +851,7 @@ ol.metro-list {
 /* General Create */
 .edit-item-content #Title_Title{ width: 80%; }
 
-.save-button a.cancel { padding-top: 2px; }
+.save-button a.close { padding-top: 2px; }
 
 /* Forum */
 ul.forum-threads.content-items li { padding: 10px 0 0; }
@@ -859,8 +859,14 @@ ul.forum-threads.content-items .content-item.thread { border: 1px dotted #DBDBDB
 ul.forum-threads h1 { margin-top: 0; display: inline-block; }
 ul.forum-threads .metadata { float: right; }
 
+a.showhide { clear: left; float: left;}
+
 .forum header .actions { height: 55px; }
 .forum header .actions a { float: right; padding-left: 5px; }
+
+/* User Forum */
+.user-wave header .actions { height: 55px; }
+.user-wave header .actions a { float: right; padding-left: 5px; }
 
 /* Thread */
 .thread header .actions { height: 55px; }
@@ -872,8 +878,10 @@ ul.forum-threads .metadata { float: right; }
 .post .actions { height: 55px; }
 .post .actions a { float: right; padding-left: 5px; }
 
+.post footer { clear: left;}
 .post footer .metadata { float: left; }
 .post footer .metadata .author img { float: left; margin-right: 10px; }
+
 
 
 /* Taxonomies */
@@ -973,4 +981,16 @@ button.microsoft {
 
 button.google {
 	background-image: url("../Content/images/icons/0715.png");
+}
+
+
+/* Real Time module */
+
+#layout-main.area-large{
+	width: 1440px;
+}
+
+#content .split-container {
+	width: 48%;
+	float: left;
 }
