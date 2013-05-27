@@ -1,0 +1,35 @@
+﻿@using Orchard.ContentManagement
+@using Orchard.InlineEditing
+@using NGM.Forum.Models
+@using NGM.Forum.Settings
+@using NGM.Forum.ViewModels
+
+@{
+    var part = (PostPart)Model.DisplayShape.ContentPart;
+    var typePartSettings = part.Settings.GetModel<PostTypePartSettings>();
+
+    var flavor = (typePartSettings != null && !string.IsNullOrWhiteSpace(typePartSettings.Flavor))
+                       ? typePartSettings.Flavor
+                       : part.PartDefinition.Settings.GetModel<PostPartSettings>().FlavorDefault;
+
+    PostBodyEditorViewModel viewModel = new PostBodyEditorViewModel {
+        PostPart = part,
+        EditorFlavor = flavor
+    };
+
+    if (flavor == "html") {
+        Script.Require("OrchardTinyMce");
+        Script.Include("orchard-inlineedit-tinemceeditor.js");
+    }
+    if (flavor == "markdown") {
+        Script.Require("OrchardMarkdown");
+        Script.Include("orchard-inlineedit-markdowneditor.js");
+    }
+}
+
+@using (Html.InlineEdit(this)) {
+    <fieldset>
+        <label>@T("Body")</label>
+        @Display.Post_Body_Editor(viewModel)
+    </fieldset>
+}

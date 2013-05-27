@@ -1,0 +1,36 @@
+﻿@using Orchard.ContentManagement
+@using Orchard.InlineEditing
+@using Orchard.Core.Common.Models
+@using Orchard.Core.Common.Settings
+@using Orchard.Core.Common.ViewModels
+
+@{
+    var part = (BodyPart)Model.DisplayShape.ContentPart;
+    var typePartSettings = part.Settings.GetModel<BodyTypePartSettings>();
+
+    var flavor = (typePartSettings != null && !string.IsNullOrWhiteSpace(typePartSettings.Flavor))
+                       ? typePartSettings.Flavor
+                       : part.PartDefinition.Settings.GetModel<BodyPartSettings>().FlavorDefault;
+
+    BodyEditorViewModel viewModel = new BodyEditorViewModel {
+        BodyPart = part,
+        EditorFlavor = flavor,
+        AddMediaPath = "/"
+    };
+
+    if (flavor == "html") {
+        Script.Require("OrchardTinyMce");
+        Script.Include("orchard-inlineedit-tinemceeditor.js");
+    }
+    if (flavor == "markdown") {
+        Script.Require("OrchardMarkdown");
+        Script.Include("orchard-inlineedit-markdowneditor.js");
+    }
+}
+
+@using (Html.InlineEdit(this)) {
+    <fieldset>
+        <label>@T("Body")</label>
+        @Display.Body_Editor(viewModel)
+    </fieldset>
+}

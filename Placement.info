@@ -4,13 +4,13 @@
       Parts_Tags_ShowTags="-"
       Parts_Common_Metadata="-"
       Parts_Contents_Publish="-"
-      Fields_Contrib_TaxonomyField="-"/>
+      Fields_TaxonomyField="-"/>
   <!--</Match>-->
 
   <Match ContentType="Thread">
     <Match DisplayType="Detail">
-      <Place Fields_Contrib_TaxonomyField-Tags="Meta:1"
-             Fields_Contrib_TaxonomyField-Categories="Meta:2"/>
+      <Place Fields_TaxonomyField-Tags="Meta:1"
+             Fields_TaxonomyField-Categories="Meta:2"/>
     </Match>
   </Match>
   
@@ -20,4 +20,11 @@
     </Match>
   </Match>
   
+  <Match DisplayType="Detail">
+      <Place Fields_TaxonomyField_InlineEdit="Inline:1" 
+             Parts_Threads_Post_Body_InlineEdit="Inline:1" 
+             Parts_Title_InlineEdit="Inline:1" 
+             Parts_Common_Body_InlineEdit="Inline:1" 
+      />
+  </Match>
 </Placement>

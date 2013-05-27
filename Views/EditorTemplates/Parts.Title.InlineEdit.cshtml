@@ -1,0 +1,14 @@
+﻿@using Orchard.ContentManagement
+@using Orchard.Core.Title.Models
+@using Orchard.InlineEditing
+@{
+    var titlePart = (TitlePart)Model.DisplayShape.ContentPart;
+}
+
+@using (Html.InlineEdit(this)) {
+    <fieldset>
+        <label for="Title_Title">@T("Title")</label>
+        @Html.TextBox("Title", titlePart.Title, new { @class = "large text", autofocus = "autofocus" })
+        <span class="hint">@T("You must provide a unique title for this content item")</span>
+    </fieldset>
+}

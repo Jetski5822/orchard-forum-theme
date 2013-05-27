@@ -994,3 +994,9 @@ button.google {
 	width: 48%;
 	float: left;
 }
+
+/* Inline Editing Markdown */
+
+.wmd-button-bar > ul {
+	list-style-type: none;
+}
