@@ -1,6 +1,5 @@
 ﻿@using Orchard.InlineEditing
-@using Orchard.Taxonomies.Fields
 
-@using (Html.InlineEditForField(this, typeof(TaxonomyField).Name, (int)Model.Id, "Fields_TaxonomyField")) {
+@using (Html.InlineEdit(this)) {
     <p>Do some inline editing on tags here....</p>
 }

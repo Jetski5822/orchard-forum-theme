@@ -2,8 +2,15 @@
     $("a.create.quote").on('click', function (event) {
         window.location.hash = "#quick-reply";
 
-        // get content
-        var content = $(this).closest("article.post").children().not('header,footer').clone();
+        var content = '';
+
+        if (window.orchard.inlineedit != undefined) {
+            // get content
+            content = $(this).closest("article.post").find(".editable-content").children().clone();
+        } else {
+            // get content
+            content = $(this).closest("article.post").children().not('header,footer').clone();
+        }
 
         content = $('<div></div>').append(content);
         content = '<blockquote>' + content.html().toString() + '</blockquote>';
