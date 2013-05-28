@@ -9,9 +9,9 @@
             input.toggleClass("wmd-input-full");
 
             if (isFull) {
-                self.text("< Hide Preview");
+                self.text("« Hide Preview");
             } else {
-                self.text("Show Preview >");
+                self.text("Show Preview »");
             }
         });
         

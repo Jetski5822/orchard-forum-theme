@@ -14,7 +14,7 @@
 
 <div id="quick-reply" class="closed">
     <div class="inner-quick-reply">
-        <h3>@T("Quick Reply")</h3>
+        <h3>@T("Reply")</h3>
         <a href="#" class="close" title="@T("Close")"><img src="@Url.Content("~/Themes/Forum/Content/images/icons/0145.png")" alt="@T("Close")"/></a>
 
         @using (Html.BeginFormAntiForgeryPost(Url.Action("Create", "Post", new { contentId = contentId }))) {

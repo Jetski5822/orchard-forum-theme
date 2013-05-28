@@ -829,6 +829,7 @@ html.dyn #submit-pager, html.dyn .apply-bulk-actions-auto { display:none; }
 .preview-toggle {
 	float: right;
 	padding: 3px;
+	text-transform: lowercase;
 }
 
 .wmd-box .wmd-input-full {
