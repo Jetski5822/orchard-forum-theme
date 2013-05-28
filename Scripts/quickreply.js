@@ -9,7 +9,7 @@
         return false;
     });
 
-    $("#quick-reply .primaryAction").on('click', function (event) {
+    $("#quick-reply .primaryAction").on('click', function () {
         $("#quick-reply").slideUp('slow', function () {
             $('#layout-wrapper').removeClass('quick-reply-open');
         });
