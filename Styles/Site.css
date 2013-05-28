@@ -743,11 +743,106 @@ html.dyn #submit-pager, html.dyn .apply-bulk-actions-auto { display:none; }
 ***************************************************************/
 
 #quick-reply {
+	display: none;
+	height: 300px;
+	position: fixed;
+	width: 100%;
+	bottom: 0px;
+	z-index: 9999;
+	background-color: #dcdfe0;
+	/*background-color: rgba(220,223,224,0.96);*/
+	left: 0px;
+}
+
+#quick-reply .edit-item-primary {
+	height: 217px;	
+}
+
+#quick-reply .inner-quick-reply {
+	width: 960px;
+	margin: 0 auto;
+}
+
+#quick-reply .wmd-input, #quick-reply .wmd-preview {
+	height: 170px !important; /* Not sure how to remvoe inline style */
+}
+
+#quick-reply .quick-reply-open {
+	padding-bottom: 217px;
+}
+
+#quick-reply .grippie {
+	display: none;
+}
+
+#quick-reply .preview-toggle {
+	margin-top: 4px;
+}
+
+#quick-reply .inner-quick-reply > h3 {
+	float: left;
+}
+
+#quick-reply .inner-quick-reply > a.close {
+	float: right;
+	margin-top: 5px;
+}
+
+#quick-reply .inner-quick-reply > a.close img {
+	width: 35px;
+}
+
+#quick-reply .inner-quick-reply form {
 	clear: left;
+}
+
+.quick-reply-open {
+	margin-bottom: 300px;
+}
+
+/* Oddness around editing */
+.edit-item .wmd-box { width: 100%;height: auto; }
+
+.edit-item .wmd-input {
+	width: 97%;
+	min-height: 80%;
+}
+
+/* Inline Editing Markdown */
+
+.shape-editor-wrapper .wmd-box {
+	width: 100%;
+	height: auto;
+}
+
+.shape-editor-wrapper .wmd-input, .shape-editor-wrapper .wmd-preview {
+	width: 97%;
+	min-height: 309px;
+}
+
+.wmd-button-bar > ul {
+	list-style-type: none;
+}
+
+/* Markdown Editor */
+
+.preview-toggle {
+	float: right;
+	padding: 3px;
+}
+
+.wmd-box .wmd-input-full {
+	width: 99%;
+}
+
+.wmd-box .wmd-preview-box-hidden {
+	display: none;
 }
 
 /* Search
 ***************************************************************/
+/* ReSharper restore DeclarationIsEmpty */
+/* ReSharper restore DeclarationIsEmpty */
 
 .search-form input {
     background-image: url("../Content/images/glass.png");
@@ -947,7 +1042,7 @@ a.showhide { clear: left; float: left;}
   }
 }
 
-:target { -moz-animation: highlight 5s; -o-animation: highlight 5s; -webkit-animation: highlight 5s; animation: highlight 5s; }
+/*:target { -moz-animation: highlight 5s; -o-animation: highlight 5s; -webkit-animation: highlight 5s; animation: highlight 5s; }*/
 
 /* OpenId 
 ***************************************************************/
@@ -993,10 +1088,4 @@ button.google {
 #content .split-container {
 	width: 48%;
 	float: left;
-}
-
-/* Inline Editing Markdown */
-
-.wmd-button-bar > ul {
-	list-style-type: none;
 }

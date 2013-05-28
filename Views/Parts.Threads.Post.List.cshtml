@@ -3,12 +3,6 @@
 @using Orchard.ContentManagement
 @{
     Style.Require("Threads");
-    Script.Require("jQuery");
-
-    if (AuthorizedFor(Permissions.ReplyPost)) {
-        Script.Include("QuickReply-Markdown.js");
-        Script.Include("to-markdown/to-markdown.js");
-    }
     
     IEnumerable<object> posts = Model.ContentItems;
     Model.ContentItems.Classes.Add("content-items");

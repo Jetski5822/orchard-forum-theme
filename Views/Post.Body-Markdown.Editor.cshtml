@@ -1,6 +1,7 @@
 ﻿@{ 
     Script.Require("OrchardMarkdown");
     Style.Require("OrchardMarkdown");
+    Script.Include("markdowneditor-custom.js");
     string idPostfix = @Html.FieldIdFor(m => m);
 }
 <div class="wmd-box has-grip">
@@ -8,7 +9,7 @@
         <div class="wmd-editor-box">
             <div id="wmd-button-bar-@idPostfix" class="wmd-button-bar"></div>
 
-            @Html.TextArea("Text", (string)Model.Text, 25, 80,
+            @Html.TextArea("Text", (string)Model.Text,
                            new Dictionary<string, object> {
                                {"id", "wmd-input" + "-" + idPostfix},
                                {"class", "wmd-input"},
@@ -22,3 +23,4 @@
         </div>
     </div>
 </div>
+<a class="preview-toggle" href="#">@T("< Hide Preview")</a> 
