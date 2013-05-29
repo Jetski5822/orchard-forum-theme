@@ -4,7 +4,8 @@
       Parts_Tags_ShowTags="-"
       Parts_Common_Metadata="-"
       Parts_Contents_Publish="-"
-      Fields_TaxonomyField="-"/>
+      Fields_TaxonomyField="-"
+      Parts_Autoroute_Edit="-"/>
   <!--</Match>-->
 
   <Match ContentType="Thread">
