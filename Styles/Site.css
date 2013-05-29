@@ -1090,3 +1090,7 @@ button.google {
 	width: 48%;
 	float: left;
 }
+
+.invisible {
+	visibility: hidden;
+}

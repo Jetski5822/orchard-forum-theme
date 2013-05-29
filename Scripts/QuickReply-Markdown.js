@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $("a.create.quote").on('click', function (event) {
+    $('#content').on('click', "a.create.quote", function (event) {
         window.location.hash = "#quick-reply";
 
         var content = '';

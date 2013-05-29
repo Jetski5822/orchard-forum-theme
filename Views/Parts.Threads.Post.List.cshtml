@@ -3,6 +3,8 @@
 @using Orchard.ContentManagement
 @{
     Style.Require("Threads");
+    Script.Require("jQuery");
+    Script.Include(@"jquery.infinitescroll\jquery.infinitescroll.js", @"jquery.infinitescroll\jquery.infinitescroll.min.js"); // Maybe should go into the pager?
     
     IEnumerable<object> posts = Model.ContentItems;
     Model.ContentItems.Classes.Add("content-items");
@@ -14,5 +16,23 @@
 @if (noReplies) {
     <p class="nocontentitems">@T("There are no replies to this post.")</p>
 } else { 
-  @Display(Model.Pager)
+    @Display(Model.Pager)
+
+    using (Script.Foot()) {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".pager-footer").hide();
+                $(".content-items").infinitescroll({
+                    loading: {
+                        finished: undefined,
+                        finishedMsg: "<em>There is no more content to load.</em>",
+                        msgText: "<em>Loading content...</em>",
+                    },
+                    nextSelector: "ul.pager a",
+                    navSelector: "ul.pager",
+                    itemSelector: ".content-items li"
+                });
+            });
+        </script>
+    }
 }
