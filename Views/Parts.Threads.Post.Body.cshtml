@@ -1,0 +1,10 @@
+﻿@{
+    NGM.XSiteScripting.HtmlUtility util = NGM.XSiteScripting.HtmlUtility.Instance;
+}
+@if (!string.IsNullOrEmpty(Model.Html.ToString())) {
+    var body = new HtmlString(HttpUtility.HtmlDecode(util.SanitizeHtml(Model.Html.ToString().Replace(Environment.NewLine, "</p>" + Environment.NewLine + "<p>"))));
+    <p>@body</p>
+}
+else {
+    <p class="automated-response">@T("Automated Response: I decided to write nothing.")</p>
+}

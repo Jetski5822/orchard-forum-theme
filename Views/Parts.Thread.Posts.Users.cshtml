@@ -1,0 +1,30 @@
+﻿@using NGravatar.Html
+@using NGM.Forum.Models
+@using Orchard.ContentManagement.Aspects
+@using Orchard.Security
+@using Orchard.ContentManagement
+@{
+    IUser threadOwner = ((ThreadPart) Model.ContentPart).As<ICommonPart>().Owner;
+    var users = ((IEnumerable<IUser>)Model.Users).Except(new List<IUser> { threadOwner }).ToList();
+}
+
+<div class="talkingusers">
+    <div class="user author">
+        <img src="@Url.Gravatar(string.IsNullOrWhiteSpace(threadOwner.Email) ? "dummy@foobar.com" : threadOwner.Email, 50)" alt="" title="@threadOwner.UserName" class="avatar"/>
+        <span class="user-name">@threadOwner.UserName</span>
+    </div>
+    
+    @if (users.Any()) {
+        <span class="description">@T("is talking with")</span>
+
+        foreach (var user in users) {
+            <div class="user">
+                <img src="@Url.Gravatar(string.IsNullOrWhiteSpace(user.Email) ? "dummy@foobar.com" : user.Email, 50)" alt="" title="@user.UserName" />
+                <span class="user-name">@user.UserName</span>
+            </div>
+        }
+    }
+    else {
+        <span class="description">@T("is talking with nobody, why not join in?")</span>
+    }
+</div>

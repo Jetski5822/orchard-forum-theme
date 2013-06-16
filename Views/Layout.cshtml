@@ -45,8 +45,10 @@
 
     WorkContext.Layout.Header.Add(New.Branding(), "5"); // Site name and link to the home page
     WorkContext.Layout.Footer.Add(New.BadgeOfHonor(), "5"); // Powered by Orchard
-    WorkContext.Layout.Footer.Add(New.User(), "10"); // Login and dashboard links
-
+    WorkContext.Layout.Header.Add(New.User(), "10"); // Login and dashboard links
+    if (WorkContext.HttpContext.Request.Url != null && WorkContext.HttpContext.Request.Url.LocalPath != "/") {
+        WorkContext.Layout.Content.Add(New.Back(), "-10000"); // Back button
+    }
     /* Last bit of code to prep the layout wrapper
     ***************************************************************/
     

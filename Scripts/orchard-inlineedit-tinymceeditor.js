@@ -4,17 +4,17 @@
     var $inlineedit = $(inlineedit);
 
     $inlineedit.bind(inlineedit.events.retrieveContent, function (event, scope, shapeEditor) {
-        console.debug('Processing Content: TinyMce Editor');
+        console.log('Processing Content: TinyMce Editor');
 
         if (tinyMCE != undefined) {
             tinyMCE.triggerSave();
         }
 
-        console.debug('Processed Content: TinyMce Editor');
+        console.log('Processed Content: TinyMce Editor');
     });
 
     $inlineedit.bind(inlineedit.events.editorPrepared, function (event, shape, shapeEditor) {
-        console.debug('Finalizing Editor');
+        console.log('Finalizing Editor');
         
         // TODO: http://blog.mirthlab.com/2008/11/13/dynamically-adding-and-removing-tinymce-instances-to-a-page/
 
@@ -33,7 +33,7 @@
             theme_advanced_resizing_use_cookie: false,
         });
 
-        console.debug('Finalized Editor');
+        console.log('Finalized Editor');
     });
 
     var editor = {

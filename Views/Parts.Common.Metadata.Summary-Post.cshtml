@@ -14,7 +14,7 @@
 
 <span class="author">
     @if (!string.IsNullOrWhiteSpace(gravatarUrl)) {
-        <img src="@gravatarUrl" alt="" title="@user.UserName" />
+        <img src="@gravatarUrl" alt="" title="@user.UserName" class="avatar"/>
     }
     @T("By {0}", user.UserName)@T(",")
 </span>

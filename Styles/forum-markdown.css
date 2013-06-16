@@ -1,0 +1,149 @@
+﻿.wmd-box { height: 100%; }
+
+.wmd-button {
+    width: 20px;
+    height: 20px;
+    padding-left: 2px;
+    padding-right: 3px;
+    position: absolute;
+    display: inline-block;
+    list-style: none;
+    cursor: pointer;
+}
+
+.wmd-button.wmd-help-button { margin-right: 10px; }
+
+.wmd-button > span {
+    background-image: url(../Content/Admin/Images/wmd-buttons.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.wmd-innerbox {
+	height: 90%
+}
+
+.wmd-innerbox .wmd-preview > *:first-child {
+    margin-top: 0 !important;
+}
+.wmd-innerbox .wmd-input, .wmd-innerbox .wmd-preview {
+    -moz-box-sizing: border-box;
+    background-color: #FFFFFF;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.wmd-innerbox .wmd-input {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: transparent -moz-use-text-color -moz-use-text-color;
+    border-image: none;
+    border-radius: 0 0 0 0;
+    border-right: 0 none;
+    border-style: solid none none;
+    left: 0;
+    top: 0;
+    transition: none 0s ease 0s;
+}
+
+.wmd-innerbox .wmd-editor-box, .wmd-innerbox .wmd-preview-box {
+    -moz-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 49.5%;
+}
+.wmd-innerbox .wmd-editor-box {
+    float: left;
+	height: 90%;
+}
+.wmd-innerbox .wmd-editor-box .popup-tip {
+    margin-top: 3px;
+    right: 4px;
+}
+.wmd-innerbox .wmd-preview-box {
+    float: right;
+	height: 100%;
+}
+
+.wmd-preview {
+    border: 1px dashed #CCCCCC;
+    overflow: auto;
+	color: #000000;
+}
+
+
+.wmd-preview ol {
+    list-style: decimal;
+    margin-left: 15px;
+}
+
+.wmd-preview ul {
+    list-style: disc;
+    margin-left: 15px;
+}
+
+.wmd-preview blockquote {
+    margin: 1em 3em;
+	color: #333;
+	border-left: 2px solid #999;
+	padding-left: 1em;
+}
+
+.wmd-preview pre, .wmd-preview code {
+    margin: 1em 3em;
+	color: #333;
+	border-left: 2px solid #999;
+	padding-left: 1em;
+    font-family: Courier New;
+}
+
+.wmd-preview pre code {
+    border: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+
+.wmd-preview p code {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.wmd-prompt-dialog {
+border: solid 1px #ccc;
+background-color: white;
+}
+
+.wmd-button-bar {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #D4D4D4;
+    top: 0;
+    z-index: 100;
+	padding: 1px;
+}
+
+.wmd-button-row {
+    height: 20px;
+    margin: 10px 5px 5px;
+    padding: 0;
+}
+
+.preview-toggle { float: right;clear: both; }
+
+.wmd-hide-preview .wmd-editor-box {
+	width: 100%;
+}
+
+.wmd-hide-preview .wmd-preview-box {
+    display: none;
+}

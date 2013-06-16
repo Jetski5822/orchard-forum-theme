@@ -1,0 +1,5 @@
+@Display(New.Profile_Head(ContentItem: Model.ContentItem))
+@using (Html.BeginFormAntiForgeryPost()) {
+    @Html.ValidationSummary()
+    @Display(Model)
+}

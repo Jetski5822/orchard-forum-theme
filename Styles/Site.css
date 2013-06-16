@@ -390,9 +390,12 @@ textarea {
 ***************************************************************/
 #layout-wrapper { }
 
+#layout-featured, #layout-before-main, #layout-main, #layout-after-main, #layout-tripel {
+    
+}
+
 #layout-header, #layout-featured, #layout-before-main, #layout-main, #layout-footer, #layout-after-main, #layout-tripel {
-    width:960px;
-    margin:0 auto;
+	margin:0 auto;
 }
 
 /* Navigation */
@@ -519,7 +522,14 @@ nav ul.breadcrumb
         #footer-quad-third {}        
         #footer-quad-forth {}
     #footer-sig {}
-    
+ 
+@media only screen 
+and (min-width : 960px) {
+	#layout-main { width:960px; }
+}
+
+
+
 /* Zones */
 .zone 
 {
@@ -532,7 +542,7 @@ nav ul.breadcrumb
     -webkit-box-shadow:inset 0 0 1px purple;
     */
 } 
-.zone-header { padding: 30px 0 30px 12px; position: relative; }
+.zone-header { padding: 0 0 30px 12px; position: relative; }
 .zone-navigation { padding: 0; }
 .zone-featured {}
 .zone-before-main {}
@@ -758,13 +768,21 @@ html.dyn #submit-pager, html.dyn .apply-bulk-actions-auto { display:none; }
 	height: 217px;	
 }
 
-#quick-reply .inner-quick-reply {
-	width: 960px;
-	margin: 0 auto;
+#quick-reply .edit-item-primary .edit-item-content {
+	height: 100%;
 }
 
-#quick-reply .wmd-input, #quick-reply .wmd-preview {
-	height: 170px !important; /* Not sure how to remvoe inline style */
+#quick-reply .edit-item-secondary {
+	float: left;
+}
+
+#quick-reply .edit-item-secondary fieldset {
+	padding: 0;
+}
+
+#quick-reply .inner-quick-reply {
+	width: 1145px;
+	margin: 0 auto;
 }
 
 #quick-reply .quick-reply-open {
@@ -773,10 +791,6 @@ html.dyn #submit-pager, html.dyn .apply-bulk-actions-auto { display:none; }
 
 #quick-reply .grippie {
 	display: none;
-}
-
-#quick-reply .preview-toggle {
-	margin-top: 4px;
 }
 
 #quick-reply .inner-quick-reply > h3 {
@@ -800,45 +814,26 @@ html.dyn #submit-pager, html.dyn .apply-bulk-actions-auto { display:none; }
 	margin-bottom: 300px;
 }
 
-/* Oddness around editing */
-.edit-item .wmd-box { width: 100%;height: auto; }
-
-.edit-item .wmd-input {
-	width: 97%;
-	min-height: 80%;
+#quick-reply .wmd-innerbox .wmd-preview-box {
+	height: 110%;
 }
 
 /* Inline Editing Markdown */
 
-.shape-editor-wrapper .wmd-box {
-	width: 100%;
-	height: auto;
-}
-
-.shape-editor-wrapper .wmd-input, .shape-editor-wrapper .wmd-preview {
-	width: 97%;
+/*.shape-editor-wrapper .wmd-input {
 	min-height: 309px;
 }
+
+.shape-editor-wrapper .wmd-preview {
+	min-height: 279px;
+}*/
 
 .wmd-button-bar > ul {
 	list-style-type: none;
 }
 
-/* Markdown Editor */
+.shape-editor-actions { clear: both; }
 
-.preview-toggle {
-	float: right;
-	padding: 3px;
-	text-transform: lowercase;
-}
-
-.wmd-box .wmd-input-full {
-	width: 99%;
-}
-
-.wmd-box .wmd-preview-box-hidden {
-	display: none;
-}
 
 /* Search
 ***************************************************************/
@@ -873,9 +868,12 @@ html.dyn #submit-pager, html.dyn .apply-bulk-actions-auto { display:none; }
 .bottom     { margin-bottom:0; padding-bottom:0; }
 
 .credits { float: left; }
-.user-display { float: left; padding: 0 12px; }
+.main-header { float: left; }
+.user-display { float: right; padding: 0 12px;margin-top: 27px; }
 .user-display .welcome {}
 .user-display .user-actions {}
+.user-display .user-info { float: left;display: block;margin-left: 8px;}
+.user-display .user-info h3 { margin-top: -7px; }
 
 .login-form { clear: right; float: left; margin: 24px 0 0 0; width: 49%; }
 
@@ -884,10 +882,8 @@ html.dyn #submit-pager, html.dyn .apply-bulk-actions-auto { display:none; }
 
 input[type="submit"], input[type="button"], button, .button, .button:link, .button:visited {
     color:#333;
-    background:#F5F5F5;
-    background: -webkit-gradient(linear, left top, left bottom, from(#F5F5F5), to(#cbcbcb));
-    background:-moz-linear-gradient(top , #F5F5F5, #cbcbcb);
-    border:1px solid #999;
+    background-color:#CCCCCC;
+    border:1px solid transparent;
     cursor:pointer;
     margin:.2em 0 2em 0;
     padding:.3em 1.8em;
@@ -947,7 +943,7 @@ ol.metro-list {
 /* General Create */
 .edit-item-content #Title_Title{ width: 80%; }
 
-.save-button a.close { padding-top: 2px; }
+.save-button a.close { padding-top: 2px;padding-bottom: 4px; }
 
 /* Forum */
 ul.forum-threads.content-items li { padding: 10px 0 0; }
@@ -965,20 +961,42 @@ a.showhide { clear: left; float: left;}
 .user-wave header .actions a { float: right; padding-left: 5px; }
 
 /* Thread */
+.thread-posts { clear: both; }
+
+.zone > .thread > header > .metadata { float: left;width: 75%; }
 .thread header .actions { height: 55px; }
 .thread header .actions a { float: right; padding-left: 5px; }
+.thread .metadata .author { display: block; float: left; margin-right: 5px;}
+.thread .metadata .post-count { float: right; clear: left; }
+
+.thread .talkingusers .description { display: block;float: left;}
+.thread .talkingusers .user { float: left; text-transform: capitalize;}
+.thread .talkingusers .user.author { font-weight: 600;}
+.thread .talkingusers .user img { height: 16px;margin-bottom: -2px;}
+
+.thread .talkingusers .description, .thread .talkingusers .user { margin-right: 5px;}
+
+#thread-create .wmd-innerbox .wmd-preview-box { height: 300px; }
+#thread-create .wmd-innerbox .wmd-editor-box { height: 300px; }
+#thread-create .wmd-innerbox .wmd-editor-box .wmd-input { height: 260px;border: 1px solid #E5E5E5; }
 
 /* Post */
-.content-items .content-item.post { border-top-style: dotted; padding: 10px 0; }
+.content-items .content-item.post {border: none; padding: 10px 0; }
+
+.post > .post-content { border: 1px solid rgba(0,0,0,0.1);padding: 0 0 0 2.5%;}
 
 .post .actions { height: 55px; }
 .post .actions a { float: right; padding-left: 5px; }
 
-.post footer { clear: left;}
-.post footer .metadata { float: left; }
-.post footer .metadata .author img { float: left; margin-right: 10px; }
+.post header { padding-bottom: .5em; }
+.post header .metadata { line-height: 38px; }
+.post header .metadata .author img { float: left; margin-right: 10px;}
+.post header .metadata a { border-bottom: 1px solid rgba(0, 0, 0, 0.1);padding-bottom: 1px; }
 
+.post footer { padding-top: .5em; }
 
+/* avatar */
+.avatar { border-radius: 15%; }
 
 /* Taxonomies */
 
@@ -1093,4 +1111,65 @@ button.google {
 
 .invisible {
 	visibility: hidden;
+}
+
+
+/* Homepage */
+.widget-Tagline {
+	text-align: center;
+}
+
+	.widget-Tagline h2 {
+		font-size: 4.5em;
+		font-family: "Avenir Next LT W01 Demi", "Avenir Next W10 Demi", "MuseoSans", 'Helvetica Neue', Arial;
+	}
+
+	.widget-Tagline p {
+		font-size: 2em;
+		color: #6b635b;
+	}
+
+.widget-LatestConversing {
+	text-align: center;
+	border-top: 1px solid;
+	padding-top: 19px;
+	border-top-color: #6b635b;
+}
+
+	.widget-LatestConversing ul {
+		list-style: none;
+	}
+
+	.widget-LatestConversing ul li {
+		display: inline-block;
+	}
+
+		.widget-LatestConversing ul li .author {
+			text-align: center;
+		}
+
+		.widget-LatestConversing ul li .author .author-name {
+			float: left;
+			width: 100%;
+		}
+
+.widget-TagMenu { text-align: center; margin-top: 15px; }
+
+	.widget-TagMenu nav > ul > li {
+		float: inherit;
+		display: inline-block;
+	}
+
+/* Profile */
+.profile-head .username { font-size: .6em; position: absolute; margin-top: 25px; margin-left: 10px; }
+.profile-head .user-info { float: left; display: block; }
+.profile-head .action { margin-left: 28px; }
+.profile-head > h1 { height: 70px; margin-left: 125px; }
+.user .user-info { clear: both;}
+
+/* Back */
+#navigation-back {
+	margin-left: -56px;
+    margin-top: 16px;
+	position: absolute;
 }

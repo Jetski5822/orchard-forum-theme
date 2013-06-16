@@ -1,0 +1,16 @@
+﻿@{
+    var returnUrl = Request.QueryString["returnUrl"];
+    string path = string.Empty;
+    if (!string.IsNullOrWhiteSpace(returnUrl)) {
+        path = returnUrl;
+    }
+    else {
+        var uri = WorkContext.HttpContext.Request.Url;
+        path = uri.AbsoluteUri.Remove(uri.AbsoluteUri.Length - uri.Segments.Last().Length);
+    }
+
+}
+
+<div id="navigation-back">
+    <a href="@path.TrimEnd('/')" class="back" title="@T("Back")"><img src="@Url.Content("~/Themes/Forum/Content/images/icons/0147.png")" alt="@T("Back")"/></a>
+</div>

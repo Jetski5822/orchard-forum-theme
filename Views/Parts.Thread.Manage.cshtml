@@ -3,11 +3,17 @@
 @using NGM.Forum.Models
 @{
     var threadPart = (ThreadPart)Model.ContentPart;
-    var postPart = (PostPart)Model.FirstPostContentPart;
+    var postPart = (PostPart)Model.Post;
 }
-@if (!threadPart.IsClosed) {
-    <a href="@Url.PostReply(postPart)" class="create" title="@T("Reply to this Thread")"><img src="@Url.Content("~/Themes/Forum/Content/images/icons/0028.png")" alt="@T("Reply to this Thread")"/></a>
+@if (Authorizer.Authorize(Permissions.ReplyPost, postPart.ContentItem)) {
+    if (!postPart.ThreadPart.IsClosed) {
+        <a href="@Url.PostReply(postPart)" class="create" title="@T("Reply to this Thread")"><img src="@Url.Content("~/Themes/Forum/Content/images/icons/0028.png")" alt="@T("Reply to this Thread")"/></a>
+    }
 }
 @if (Authorizer.Authorize(Permissions.DeletePost, threadPart.ContentItem) && postPart.IsParentThread()) {
     <a href="@Url.ThreadDelete(threadPart)" class="remove" title="@T("Delete")"><img src="@Url.Content("~/Themes/Forum/Content/images/icons/0420.png")" alt="@T("Delete")"/></a>
+}
+
+@if (WorkContext.CurrentUser == null) {
+    @Html.ActionLink(T("Signin to reply").ToString(), "LogOn", new { Controller = "Account", Area = "Orchard.Users", ReturnUrl = (Request.QueryString["ReturnUrl"] ?? Request.RawUrl) }, new { rel = "nofollow" })
 }

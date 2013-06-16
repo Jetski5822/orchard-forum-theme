@@ -1,5 +1,5 @@
 ﻿@{
-    string returnUrl = Request.QueryString["ReturnUrl"] ?? "/";
+    string returnUrl = !string.IsNullOrWhiteSpace(Request.QueryString["ReturnUrl"]) ? Request.QueryString["ReturnUrl"].Split(',').FirstOrDefault() : "/";
 }
 
 <fieldset class="save-button">

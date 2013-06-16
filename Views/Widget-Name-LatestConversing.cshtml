@@ -1,0 +1,22 @@
+﻿@using Orchard.ContentManagement
+@using Orchard.ContentManagement.Aspects
+@using Orchard.Security
+@{
+    var content = Model.Content;
+
+    IDictionary<int, dynamic> contentToDisplay = new Dictionary<int, dynamic>();
+    if (content.Items.Count == 1) {
+        var list = content.Items[0];
+        foreach (var thread in list.Items) {
+            IUser user = ((IContent)thread.ContentItem).As<ICommonPart>().Owner;
+            if (!contentToDisplay.ContainsKey(user.Id)) {
+                contentToDisplay.Add(user.Id, thread);
+            }
+        }
+        list.Items.Clear();
+        list.Items.AddRange(contentToDisplay.Select(o => o.Value).Take(7).ToList());
+        content.Items[0] = list;
+    }
+}
+
+@Display(content.Items[0])

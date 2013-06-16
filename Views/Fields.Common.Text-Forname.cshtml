@@ -1,0 +1,10 @@
+﻿@using Orchard.Utility.Extensions;
+@{
+    string name = Model.ContentField.DisplayName;
+    NGM.XSiteScripting.HtmlUtility util = NGM.XSiteScripting.HtmlUtility.Instance;
+    var value = new HtmlString(HttpUtility.HtmlDecode(util.SanitizeHtml(Model.Value.ToString().Replace(Environment.NewLine, "</p>" + Environment.NewLine + "<p>"))));
+}
+
+@if (HasText(name) && HasText(Model.Value)) {
+<span class="value">@value</span>
+}

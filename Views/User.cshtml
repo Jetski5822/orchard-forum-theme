@@ -1,0 +1,29 @@
+﻿@using System.Web.Mvc;
+@using NGravatar.Html
+@using Orchard.Security
+@using Orchard.Core.Common.Models
+@using Orchard.ContentManagement
+
+<div class="user-display">
+    @if (WorkContext.CurrentUser != null) {
+        <div class="user-info">
+            <h3>@Html.ItemDisplayText(WorkContext.CurrentUser)</h3>
+            <span class="user-actions">
+            @Html.ActionLink(T("Sign Out").ToString(), "LogOff", new { Controller = "Account", Area = "Orchard.Users", ReturnUrl = Context.Request.RawUrl }, new { rel = "nofollow" })
+            @if (AuthorizedFor(Orchard.Security.StandardPermissions.AccessAdminPanel)) {
+                @Html.ActionLink(T("Dashboard").ToString(), "Index", new {Area = "Dashboard", Controller = "Admin"})
+            }
+        </span>
+        </div>
+        IUser user = (IUser)WorkContext.CurrentUser;
+        var gravatarUrl = Url.Gravatar(string.IsNullOrWhiteSpace(user.Email) ? "dummy@foobar.com" : user.Email, 50);
+        
+        if (!string.IsNullOrWhiteSpace(gravatarUrl)) {
+            <div class="user-info">
+                <img src="@gravatarUrl" alt="" title="@user.UserName" class="avatar"/>
+            </div>
+        }
+    } else {
+        <span class="user-actions">@Html.ActionLink(T("Sign In").ToString(), "LogOn", new { Controller = "Account", Area = "Orchard.Users", ReturnUrl = (Request.QueryString["ReturnUrl"] ?? Request.RawUrl) }, new { rel = "nofollow" })</span>
+    }
+</div>

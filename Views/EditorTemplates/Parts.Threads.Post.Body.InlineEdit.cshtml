@@ -22,13 +22,11 @@
         Script.Include("orchard-inlineedit-tinymceeditor.js");
     }
     if (flavor == "markdown") {
-        Script.Require("OrchardMarkdown");
+        Script.Require("Markdown_Editor");
         Script.Include("orchard-inlineedit-markdowneditor.js");
     }
 }
 
 @using (Html.InlineEdit(this)) {
-    <fieldset>
-        @Display.Post_Body_Editor(viewModel)
-    </fieldset>
+    @Display.Post_Body_Editor(viewModel)
 }

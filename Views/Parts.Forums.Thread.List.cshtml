@@ -1,19 +1,17 @@
-﻿@using NGM.Forum
-@using NGM.Forum.Models
-@using Orchard.ContentManagement
+﻿@using NGM.Forum.Models
+@using NGM.Forum.Extensions
 @{
     Script.Require("jQuery");
     Script.Include(@"jquery.infinitescroll\jquery.infinitescroll.js", @"jquery.infinitescroll\jquery.infinitescroll.min.js"); // Maybe should go into the pager?
     
-    IEnumerable<object> posts = Model.ContentItems;
+    IEnumerable<object> threads = Model.ContentItems;
+    ForumPart contentPart = Model.ContentPart;
     Model.ContentItems.Classes.Add("content-items");
-    Model.ContentItems.Classes.Add("thread-posts");
-
-    bool noReplies = posts.Count() == 1 && (((ContentItem) ((dynamic) posts.First()).ContentItem).As<PostPart>().IsParentThread());
+    Model.ContentItems.Classes.Add("forum-threads");
 }
 @Display(Model.ContentItems)
-@if (noReplies) {
-    <p class="nocontentitems">@T("There are no replies to this post.")</p>
+@if (threads == null || threads.Count() < 1) {
+    <p class="nocontentitems">@T("There are no threads for this forum. Be the first to <a href=\"{0}\">create one</a>?", Url.ThreadCreate(contentPart))</p>
 } else { 
     @Display(Model.Pager)
 

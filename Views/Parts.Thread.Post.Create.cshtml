@@ -2,8 +2,6 @@
 @using System.Web.Mvc.Html
 @using Orchard.Mvc.Html
 @{
-    int contentId = Model.ContentId;
-
     Script.Require("jQuery");
     if (AuthorizedFor(Permissions.ReplyPost)) {
         Script.Include("quickreply.js");
@@ -17,10 +15,12 @@
         <h3>@T("Reply")</h3>
         <a href="#" class="close" title="@T("Close")"><img src="@Url.Content("~/Themes/Forum/Content/images/icons/0145.png")" alt="@T("Close")"/></a>
 
-        @using (Html.BeginFormAntiForgeryPost(Url.Action("Create", "Post", new { contentId = contentId }))) {
+        @using (Html.BeginFormAntiForgeryPost(Url.Action("Create", "Post"))) {
             @Html.ValidationSummary()
-            // Model is a Shape, calling Display() so that it is rendered using the most specific template for its Shape type
+
             @Display(Model.ContentEditor)
+
+            <input type="hidden" id="contentid" name="contentid" value="@Model.ContentId"/>
         }
     </div>
 </div>

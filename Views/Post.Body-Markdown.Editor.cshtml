@@ -1,8 +1,8 @@
 ﻿@{ 
-    Script.Require("OrchardMarkdown");
-    Style.Require("OrchardMarkdown");
+    Script.Require("Markdown_Editor");
+    Style.Include("forum-markdown.css");
     Script.Include("markdowneditor-custom.js");
-    string idPostfix = @Html.FieldIdFor(m => m);
+    string idPostfix = @Html.FieldIdFor(m => m) + "-" + @Model.PostPart.Id;
 }
 <div class="wmd-box has-grip">
     <div class="wmd-innerbox">

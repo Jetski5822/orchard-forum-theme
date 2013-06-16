@@ -7,25 +7,47 @@
       Fields_TaxonomyField="-"
       Parts_Autoroute_Edit="-"/>
   <!--</Match>-->
+  <Place Parts_Roles_UserRoles_Edit="-"/>
+  <Match Path="/">
+
+
+    <Match ContentType="Page">
+      <Place Parts_Title="-"/>
+    </Match>
+  </Match>
+  
+  <Match Path="/profile/*">
+    <Place Fields_Common_Text-Forname="-"
+           Fields_Common_Text-Surname="-"/>
+  </Match>
+  
+  <Match ContentType="Thread">
+    <Match DisplayType="SummaryFooter">
+      <Place Parts_Title_Summary="-"
+              Parts_Threads_Thread_ThreadReplyCount="-"
+              Forum_Metadata_First="-"
+              Forum_Metadata_Latest="-"
+              Parts_Common_Metadata_Summary="Meta:2;Alternate=WhosChatting"/>
+    </Match>
+  </Match>
 
   <Match ContentType="Thread">
     <Match DisplayType="Detail">
       <Place Fields_TaxonomyField-Tags="Meta:1"
-             Fields_TaxonomyField-Categories="Meta:2"/>
+             Parts_Thread_Posts_Users="Meta:2"/>
     </Match>
   </Match>
   
   <Match ContentType="Post">
     <Match DisplayType="Detail">
-      <Place Parts_Common_Metadata="MetaFooter:1"/>
+      <Place Parts_Common_Metadata="Meta:1"/>
     </Match>
   </Match>
   
   <Match DisplayType="Detail">
-      <Place Fields_TaxonomyField_InlineEdit="Inline:1" 
-             Parts_Threads_Post_Body_InlineEdit="Inline:1" 
+      <Place Parts_Threads_Post_Body_InlineEdit="Inline:1" 
              Parts_Title_InlineEdit="Inline:1" 
-             Parts_Common_Body_InlineEdit="Inline:1" 
+             Parts_Common_Body_InlineEdit="Inline:1"
       />
   </Match>
 </Placement>
