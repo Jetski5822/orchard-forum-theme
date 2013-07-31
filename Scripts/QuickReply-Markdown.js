@@ -1,12 +1,8 @@
 ﻿$(document).ready(function () {
-    var converter = Markdown.getSanitizingConverter();
-
     var idPostfix = $("#quick-reply #wmd-input-PostPart-0").attr('id').substr('wmd-input'.length);
 
-    var editor = new Markdown.Editor(converter, idPostfix, {
-        handler: function () { window.open("http://daringfireball.net/projects/markdown/syntax"); }
-    });
-
+    var editor = Orchard.Markdown.createEditor(idPostfix);
+    
     $(document).on('click', "a.create", function (event) {
         if ($(this).is(".quote")) {
             createWithQuote($(this));
@@ -20,16 +16,9 @@
         
         quickReply.find("#contentid").val($(this).closest(".content-item").data("contentitem-id"));
 
-        if (!$('#layout-wrapper').hasClass('quick-reply-open')) {
-
-            quickReply.slideDown('slow', function () {
-
-                $('#layout-wrapper').addClass('quick-reply-open');
-                quickReply.find(".wmd-input").css("width", "");
-                quickReply.find(".inner-quick-reply").toggleClass("invisible");
-            });
-        }
-
+        quickReply.addClass('open');
+        quickReply.removeClass('closed');
+        
         event.preventDefault();
         return false;
     });
@@ -41,10 +30,11 @@
     function createWithQuote(element) {
         var content = '';
 
-        if ($(element).closest("article.post").has(".editable-content").length == true) {
-            content = $(element).closest("article.post").find(".editable-content").children().not('header,footer').clone();
+        if ($(element).closest("article.content-item").has(".editable-content").length == true) {
+            // This deals with inline editing.
+            content = $(element).closest("article.content-item").find(".editable-content").children().not('header,footer').clone();
         } else {
-            content = $(element).closest("article.post").find(".post-content").children().not('header,footer').clone();
+            content = $(element).closest("article.content-item").find(".post-content").children().not('header,footer').clone();
         }
 
         content = $('<div></div>').append(content);
@@ -59,11 +49,11 @@
         if (editor.refreshPreview == undefined) {
             editor.run();
 
-            var resizableSelector = ".wmd-innerbox",
-                resizeInnerElements = function (el) {
-                    el.height(195);
-                };
-            resizeInnerElements($(resizableSelector));
+            $("#quick-reply").TextAreaResizer(null, {
+                useParentWidth: true,
+                resizeWrapper: true,
+                prepend: true
+            });
         } else {
             editor.refreshPreview();
         }

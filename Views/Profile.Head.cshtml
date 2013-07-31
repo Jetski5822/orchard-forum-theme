@@ -1,6 +1,5 @@
 @using Orchard.ContentManagement
 @using NGravatar.Html
-
 @{
   var user = ((IContent)Model.ContentItem).As<Orchard.Security.IUser>();
   
@@ -8,6 +7,8 @@
   var surname = Model.ContentItem.ProfilePart.Surname.Value;
 
   var gravatarUrl = Url.Gravatar(string.IsNullOrWhiteSpace(user.Email) ? "dummy@foobar.com" : user.Email, 100);
+
+  bool isInEditMode = Context.Request.Url.ToString().ToLowerInvariant().Contains("/edit");
 }
   <!-- Profile Head -->
 <div class="profile-head">
@@ -15,7 +16,10 @@
         <img src="@gravatarUrl" alt="" title="@user.UserName" class="avatar"/>
     </div>
     <h1>@forname @surname <span class="username">@Html.TitleForPage(user.UserName)</span></h1>
-    @if(WorkContext.CurrentUser != null && WorkContext.CurrentUser.UserName == user.UserName) {
-        @Html.ActionLink(T("Edit profile").Text, "Edit", new { ReturnUrl = Context.Request.RawUrl }, new { @class = "action" })
+    @if (WorkContext.CurrentUser != null && WorkContext.CurrentUser.UserName == user.UserName && !isInEditMode) {
+        @Html.ActionLink(T("Edit profile").Text, "Edit", new {ReturnUrl = Context.Request.RawUrl}, new {@class = "action"})
+    }
+    else if (WorkContext.CurrentUser != null && WorkContext.CurrentUser.UserName == user.UserName && isInEditMode) {
+        <a href="@Context.Request.QueryString["ReturnUrl"]" class="action">@T("Cancel ediing profile")</a>
     }
 </div>

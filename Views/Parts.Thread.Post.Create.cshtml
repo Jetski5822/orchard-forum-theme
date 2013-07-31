@@ -3,7 +3,7 @@
 @using Orchard.Mvc.Html
 @{
     Script.Require("jQuery");
-    if (AuthorizedFor(Permissions.ReplyPost)) {
+    if (AuthorizedFor(Orchard.Core.Contents.Permissions.PublishContent)) {
         Script.Include("quickreply.js");
         Script.Include("quickreply-markdown.js");
         Script.Include("to-markdown/to-markdown.js");
@@ -11,9 +11,9 @@
 }
 
 <div id="quick-reply" class="closed">
-    <div class="inner-quick-reply invisible">
+    <div class="inner-quick-reply">
         <h3>@T("Reply")</h3>
-        <a href="#" class="close" title="@T("Close")"><img src="@Url.Content("~/Themes/Forum/Content/images/icons/0145.png")" alt="@T("Close")"/></a>
+        <a href="#" class="cancel cancel-link" title="@T("Cancel")"><img src="@Url.Content("~/Themes/Forum/Content/images/icons/0145.png")" alt="@T("Cancel")"/></a>
 
         @using (Html.BeginFormAntiForgeryPost(Url.Action("Create", "Post"))) {
             @Html.ValidationSummary()

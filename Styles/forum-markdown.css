@@ -1,85 +1,253 @@
-﻿.wmd-box { height: 100%; }
-
-.wmd-button {
-    width: 20px;
-    height: 20px;
-    padding-left: 2px;
-    padding-right: 3px;
-    position: absolute;
-    display: inline-block;
-    list-style: none;
-    cursor: pointer;
+﻿.wmd-button {
+	width: 20px;
+	height: 20px;
+	padding-left: 2px;
+	padding-right: 3px;
+	position: absolute;
+	display: inline-block;
+	list-style: none;
+	cursor: pointer;
 }
 
-.wmd-button.wmd-help-button { margin-right: 10px; }
+	.wmd-button > span {
+		background-image: url(../Content/Admin/Images/wmd-buttons.png);
+		background-repeat: no-repeat;
+		background-position: 0 0;
+		width: 20px;
+		height: 20px;
+		display: inline-block;
+	}
 
-.wmd-button > span {
-    background-image: url(../Content/Admin/Images/wmd-buttons.png);
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    width: 20px;
-    height: 20px;
-    display: inline-block;
+.wmd-button-row {
+	position: relative;
+	margin: 10px 5px 5px 5px;
+	padding: 0;
+	height: 20px;
 }
+
+#quick-reply {
+	transition: height 0.4s ease;
+	width: 100%;
+	z-index: 1039;
+	height: 0;
+	background-color: #dcdfe0;
+	bottom: 0;
+	position: fixed;
+	left: 0;
+}
+
+	#quick-reply .cancel-link {
+		float: right;
+		margin-top: 3px;
+		margin-right: 50px;
+	}
+
+		#quick-reply .cancel-link img {
+			width: 35px;
+		}
+
+	#quick-reply .grippie {
+		display: none;
+	}
+
+	#quick-reply.open {
+		height: 300px;
+	}
+
+		#quick-reply.open .grippie {
+			display: block;
+		}
+
+	#quick-reply.closed {
+		height: 0px !important;
+	}
+
+	#quick-reply .inner-quick-reply > h3 {
+		margin-top: 0;
+		float: left;
+	}
+
+	#quick-reply .inner-quick-reply {
+		max-width: 1500px;
+		margin-left: auto;
+		margin-right: auto;
+		min-width: 1280px;
+	}
+
+		#quick-reply .inner-quick-reply .edit-item-secondary {
+			position: absolute;
+			display: block;
+			bottom: 0;
+		}
+
+	#quick-reply.closed .inner-quick-reply .edit-item-secondary {
+		display: none;
+	}
+
+/*Inline editing*/
+.shape-editor-wrapper .wmd-box {
+	height: 380px;
+}
+.shape-editor-wrapper .wmd-innerbox {
+	left: 5px;
+	right: 5px;
+	top: 5px;
+	height: 98%;
+	position: inherit;
+}
+
+.shape-editor-wrapper .toggle-preview {
+	margin-right: 95px;
+	bottom: 10px;
+}
+
+.toggle-preview {
+	position: absolute;
+	bottom: -31px;
+	margin-top: 0px;
+	right: 5px;
+	text-decoration: underline;
+}
+
+.save-button .button {
+	margin: 0;
+}
+
+.save-button a.cancel-button {
+	padding-top: 2px;
+	padding-bottom: 3px;
+}
+
 
 .wmd-innerbox {
-	height: 90%
+	left: 30px;
+	right: 30px;
+	position: absolute;
+	top: 50px;
+	bottom: 48px;
 }
 
-.wmd-innerbox .wmd-preview > *:first-child {
-    margin-top: 0 !important;
-}
-.wmd-innerbox .wmd-input, .wmd-innerbox .wmd-preview {
-    -moz-box-sizing: border-box;
-    background-color: #FFFFFF;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    word-wrap: break-word;
+.wmd-input {
+	position: absolute;
+	left: 0;
+	top: 0;
+	border: 0;
+	border-radius: 0;
+	transition: none;
+	bottom: 35px;
+	border-top: 36px solid transparent;
 }
 
-.wmd-innerbox .wmd-input {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    border-color: transparent -moz-use-text-color -moz-use-text-color;
-    border-image: none;
-    border-radius: 0 0 0 0;
-    border-right: 0 none;
-    border-style: solid none none;
-    left: 0;
-    top: 0;
-    transition: none 0s ease 0s;
-}
-
-.wmd-innerbox .wmd-editor-box, .wmd-innerbox .wmd-preview-box {
-    -moz-box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    width: 49.5%;
-}
-.wmd-innerbox .wmd-editor-box {
-    float: left;
-	height: 90%;
-}
-.wmd-innerbox .wmd-editor-box .popup-tip {
-    margin-top: 3px;
-    right: 4px;
-}
-.wmd-innerbox .wmd-preview-box {
-    float: right;
-	height: 100%;
+.wmd-input:focus {
+	border-top: 36px solid transparent;
 }
 
 .wmd-preview {
-    border: 1px dashed #CCCCCC;
-    overflow: auto;
-	color: #000000;
+	border: 1px dashed #CCC;
+	overflow: auto;
+	visibility: visible;
 }
 
+	.wmd-preview > *:first-child {
+		margin-top: 0px !important;
+	}
+
+	.wmd-preview p {
+		margin-top: 0;
+	}
+
+	.wmd-preview.hidden {
+		width: 0;
+		visibility: hidden;
+	}
+
+.wmd-input,
+.wmd-preview {
+	color: #000;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	min-height: 100%;
+	padding: 7px;
+	margin: 0;
+	background-color: #FFF;
+	word-wrap: break-word;
+}
+
+	.wmd-input img,
+	.wmd-preview img {
+		max-width: 100%;
+		border-radius: 4px;
+	}
+
+	.wmd-input h1,
+	.wmd-input h2,
+	.wmd-input h3,
+	.wmd-input h4,
+	.wmd-input h5,
+	.wmd-input h6,
+	.wmd-preview h1,
+	.wmd-preview h2,
+	.wmd-preview h3,
+	.wmd-preview h4,
+	.wmd-preview h5,
+	.wmd-preview h6 {
+		margin: 20px 0 10px;
+	}
+
+.wmd-editor-box,
+.wmd-preview-box {
+	position: relative;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 100%;
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 50%;
+}
+
+.wmd-editor-box {
+	padding-right: 5px;
+	float: left;
+}
+
+	.wmd-editor-box .popup-tip {
+		margin-top: 3px;
+		right: 4px;
+	}
+
+.wmd-preview-box {
+	padding-left: 5px;
+	float: right;
+}
+
+.wmd-button-bar {
+	top: 0;
+	position: relative;
+	border-bottom: 1px solid #d4d4d4;
+	background-color: #FFF;
+	z-index: 100;
+}
+
+.hide-preview .wmd-input {
+	width: 100%;
+}
+
+.hide-preview .wmd-preview-box {
+	display: none;
+}
+
+.hide-preview .wmd-editor-box {
+	width: 100%;
+}
+
+
+.wmd-prompt-dialog {
+	border: solid 1px #ccc;
+	background-color: white;
+}
 
 .wmd-preview ol {
     list-style: decimal;
@@ -119,31 +287,23 @@
     padding: 0;
 }
 
-.wmd-prompt-dialog {
-border: solid 1px #ccc;
-background-color: white;
+
+@media screen and (min-width: 1550px) {
+	#quick-reply .wmd-innerbox {
+		width: 1450px;
+		left: auto;
+		right: auto;
+	}
 }
 
-.wmd-button-bar {
-    background-color: #FFFFFF;
-    border-bottom: 1px solid #D4D4D4;
-    top: 0;
-    z-index: 100;
-	padding: 1px;
-}
+/* Grippie */
 
-.wmd-button-row {
-    height: 20px;
-    margin: 10px 5px 5px;
-    padding: 0;
-}
-
-.preview-toggle { float: right;clear: both; }
-
-.wmd-hide-preview .wmd-editor-box {
-	width: 100%;
-}
-
-.wmd-hide-preview .wmd-preview-box {
-    display: none;
+div.grippie {
+	background: #EEEEEE url(../Content/Admin/Images/grippie.png) no-repeat scroll center 2px;
+	border-color: #DDDDDD;
+	border-style: solid;
+	border-width: 0 1px 1px;
+	cursor: s-resize;
+	height: 9px;
+	overflow: hidden;
 }

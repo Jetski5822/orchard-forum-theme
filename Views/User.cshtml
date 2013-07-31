@@ -24,6 +24,8 @@
             </div>
         }
     } else {
-        <span class="user-actions">@Html.ActionLink(T("Sign In").ToString(), "LogOn", new { Controller = "Account", Area = "Orchard.Users", ReturnUrl = (Request.QueryString["ReturnUrl"] ?? Request.RawUrl) }, new { rel = "nofollow" })</span>
+        <span class="user-actions">
+            <a href="@Url.Action("LogOn", "Account", new { Area = "Orchard.Users", ReturnUrl = (Request.QueryString["ReturnUrl"] ?? Request.RawUrl) })#innerwrapper" rel="nofollow" class="nyroModal loginlink">@T("Sign In")</a>
+        </span>
     }
 </div>

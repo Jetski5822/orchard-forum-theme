@@ -1,5 +1,6 @@
 ﻿@using NGM.Forum.Models
 @using NGM.Forum.Extensions
+@using Orchard.Utility.Extensions
 @{
     Script.Require("jQuery");
     Script.Include(@"jquery.infinitescroll\jquery.infinitescroll.js", @"jquery.infinitescroll\jquery.infinitescroll.min.js"); // Maybe should go into the pager?
@@ -7,7 +8,8 @@
     IEnumerable<object> threads = Model.ContentItems;
     ForumPart contentPart = Model.ContentPart;
     Model.ContentItems.Classes.Add("content-items");
-    Model.ContentItems.Classes.Add("forum-threads");
+    var contentTypeClassName = ((string)contentPart.ContentItem.ContentType + "-threads").HtmlClassify();
+    Model.ContentItems.Classes.Add(contentTypeClassName);
 }
 @Display(Model.ContentItems)
 @if (threads == null || threads.Count() < 1) {

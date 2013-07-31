@@ -1,8 +1,15 @@
 ﻿@{
     string returnUrl = !string.IsNullOrWhiteSpace(Request.QueryString["ReturnUrl"]) ? Request.QueryString["ReturnUrl"].Split(',').FirstOrDefault() : "/";
+
+    bool isReply = Model.ContentPart.Id != 0;
 }
 
 <fieldset class="save-button">
-    <button class="primaryAction" type="submit" name="submit.Save" value="submit.Save">@T("Save")</button>
-    <a href="@returnUrl" class="button close">@T("Cancel")</a>
+    @if (!isReply) {
+        <button class="button" type="submit" name="submit.Save" value="submit.Save">@T("Save")</button>
+    }
+    else {
+        <button class="button" type="submit" name="submit.Save" value="submit.Save">@T("Reply")</button>
+    }
+    <a href="@returnUrl" class="button cancel cancel-button">@T("Cancel")</a>
 </fieldset>

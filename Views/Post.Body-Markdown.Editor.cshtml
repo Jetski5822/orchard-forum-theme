@@ -1,6 +1,8 @@
 ﻿@{ 
     Script.Require("Markdown_Editor");
+    Script.Include("jquery.textarearesizer.custom.js");
     Style.Include("forum-markdown.css");
+    Script.Include("markdown-custom.js");
     Script.Include("markdowneditor-custom.js");
     string idPostfix = @Html.FieldIdFor(m => m) + "-" + @Model.PostPart.Id;
 }
@@ -21,6 +23,7 @@
         <div class="wmd-preview-box">
             <div id="wmd-preview-@idPostfix" class="wmd-panel wmd-preview"></div>
         </div>
+        
+        <a class="toggle-preview" href="#">@T("« Hide Preview")</a> 
     </div>
 </div>
-<a class="preview-toggle" href="#">@T("« Hide Preview")</a> 

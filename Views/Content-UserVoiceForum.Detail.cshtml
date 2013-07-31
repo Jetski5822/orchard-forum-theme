@@ -1,16 +1,17 @@
-﻿@*@using Orchard.Utility.Extensions;
+﻿@using Orchard.Utility.Extensions;
 @{
     if (Model.Title != null) {
         Layout.Title = Model.Title;
     }
     
     Model.Classes.Add("content-item");
-    Model.Attributes.Add("id", Model.ContentItem.Id.ToString());
     Model.Attributes.Add("data-contentitem-id", Model.ContentItem.Id.ToString());
-
+    
     var contentTypeClassName = ((string)Model.ContentItem.ContentType).HtmlClassify();
     Model.Classes.Add(contentTypeClassName);
 
+    Model.Content.Add(New.SuggestionBox(), "0"); // Site name and link to the home page
+    
     var tag = Tag(Model, "article");
 }
 @tag.StartElement
@@ -21,21 +22,16 @@
                 @Display(Model.Meta)
             </div>
         }
-    </header>
-    <div class="post-content">
-        @Display(Model.Content)
-    </div>
-    <footer>
-        @Display(Model.Footer)
-        @if (Model.MetaFooter != null) {
-            <div class="metadata">
-                @Display(Model.MetaFooter)
-            </div>
-        }
         @if (Model.Actions != null) {
             <div class="actions">
                 @Display(Model.Actions)
             </div>
         }
+    </header>
+    @Display(Model.Content)
+    @if(Model.Footer != null) {
+    <footer>
+        @Display(Model.Footer)
     </footer>
-@tag.EndElement*@
+    }
+@tag.EndElement

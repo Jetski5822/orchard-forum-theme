@@ -1,9 +1,8 @@
-﻿(function ($, window, inlineedit, markdown) {
+﻿(function ($, window, inlineedit) {
     "use strict";
 
     var $inlineedit = $(inlineedit);
 
-    var converter = markdown.getSanitizingConverter();
     var markdownEditor = undefined;
     
     $inlineedit.bind(inlineedit.events.retrieveContent, function (event, scope, shapeEditor) {
@@ -23,36 +22,25 @@
 
         var idPostfix = $(input).attr('id').substr('wmd-input'.length);
         
-        markdownEditor = new markdown.Editor(converter, idPostfix, {
-            handler: function () { window.open("http://daringfireball.net/projects/markdown/syntax"); }
-        });
-            
-        markdownEditor.run();
-        
-        var resizableSelector = ".wmd-innerbox",
-        resizeInnerElements = function (el, size) {
-            if (size > 120) {
-                el.height(size - 20);
-            }
-        };
-        resizeInnerElements($(innerEditorShape).find(resizableSelector), 400);
+        markdownEditor = Orchard.Markdown.createEditor(idPostfix);
+
+        refreshPreview(input);
 
         console.log('Finalized Editor');
     });
 
     $inlineedit.bind(inlineedit.events.notifyEditorChanged, function () {
-        refreshPreview();
+        refreshPreview(null);
     });
 
-    function refreshPreview() {
+    function refreshPreview(input) {
         if (markdownEditor.refreshPreview == undefined) {
             markdownEditor.run();
 
-            var resizableSelector = ".wmd-innerbox",
-                resizeInnerElements = function (el) {
-                    el.height(195);
-                };
-            resizeInnerElements($(resizableSelector));
+            $(input).closest(".wmd-box").TextAreaResizer(null, {
+                useParentWidth: true,
+                resizeWrapper: true,
+            });
         } else {
             markdownEditor.refreshPreview();
         }
@@ -75,4 +63,4 @@
     }
 
     window.orchard.inlineedit.defaulteditor = editor;
-})(jQuery, window, window.orchard.inlineedit.ui, window.Markdown);
+})(jQuery, window, window.orchard.inlineedit.ui);
